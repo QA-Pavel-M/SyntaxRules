@@ -31,3 +31,25 @@ Algorithm of search using Syntax Rules:
     6. If  FALSE search result has not been obtained at step 5, text is tested for occurrences of Positive pattern pieces. At least one match causes TRUE search result and search finishing.
     7. If  TRUE search result has not been obtained at step 6, the result is FALSE.
 -----------------------
+Example of use:
+
+Prerequisites:
+* The Class must be engaged in the project:
+ - syntaxrule.py file must be copied into the appropriate location
+ - the path to the Class file must be included into the Project by the 'import' Python instruction:
+    import syntaxrule
+
+1. The Syntax Rule string must be defined in a way:
+sample_search_rule = '("must_be_present_1" OR "must_be_present_2") AND !("must_not_be_present_1" OR "must_not_be_present_2" OR "must_not_be_present_3")'
+
+2. The first part of the logic expression will be executed if the search in 'text_to_search_for_occurrences' using the 'sample_search_rule' is successful, otherwise the second part will be executed:
+if (sample_rule.found_occurrences(text_to_search_for_occurrences)):
+#	...
+#	success
+#	...
+	pass
+else:
+#	...
+#	failure
+#	...
+	pass
