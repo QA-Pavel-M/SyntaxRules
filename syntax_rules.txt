@@ -1,4 +1,4 @@
-Syntax Rules (ver. 1) represent a simple format and concept of describing text search patterns.
+Syntax Rules (ver. 1) Class represents a simple format and concept of describing text search patterns.
 -----------------------
 Example of a Syntax Rule use:
     * Syntax Rule string: ("fluffy porcupine" OR "red fox") AND !("blue" OR "U+0022yellow submarineU+0021U+0022")
