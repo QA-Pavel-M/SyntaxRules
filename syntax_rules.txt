@@ -43,7 +43,7 @@ Prerequisites:
 sample_search_rule = '("must_be_present_1" OR "must_be_present_2") AND !("must_not_be_present_1" OR "must_not_be_present_2" OR "must_not_be_present_3")'
 
 2. The first part of the logic expression will be executed if the search in 'text_to_search_for_occurrences' using the 'sample_search_rule' is successful, otherwise the second part will be executed:
-if (sample_rule.found_occurrences(text_to_search_for_occurrences)):
+if (sample_search_rule.found_occurrences(text_to_search_for_occurrences)):
 #	...
 #	success
 #	...
