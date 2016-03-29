@@ -1,0 +1,33 @@
+Syntax Rules (ver. 1) represent a simple format and concept of describing text search patterns.
+-----------------------
+Example of a Syntax Rule use:
+    * Syntax Rule string: ("fluffy porcupine" OR "red fox") AND !("blue" OR "U+0022yellow submarineU+0021U+0022")
+    * Testing text: "The fox is red and fast."
+    The search result will be TRUE, because the text contains both "red" and "fox" words of one of the Positive pattern pieces and does not contain any pattern pieces listed in the Negative part.
+Syntax Rules concept:
+    * Text search using the defined Syntax Rule pattern will give the TRUE result if the text contains any of Positive part pieces and does not contain any of Negative part pieces. Otherwise the search result will be FALSE.
+    * Only simple case insensitive search is performed, regardless of word sequences and distances between the words.
+Syntax Rules format:
+    1. Every Syntax Rule has one Positive and one Negative part, confined in parenthesis and divided by the logic AND word. The Negative part is marked with the logic ! (exclamation mark).
+    2. Individual part pieces are confined in quotes and divided by the logic OR words. Spaces in every single pattern piece act like logic ANDs.
+    3. Parenthesis, quotes, and exclamation marks inside part pieces are represented with their codes according to the Rep. Table:
+        (   U+0028
+        )   U+0029
+        "   U+0022
+        '   U+0027
+        !   U+0021
+-----------------------
+Algorithm of search using Syntax Rules:
+    1. Syntax Rule string is defined.
+    2. Positive and Negative search patterns are retrieved by splitting the Syntax Rule string at ') AND !(' and cutting out excessive parenthesis.
+    3. Each pattern data piece is retrieved by splitting patterns at ' OR ' and cutting out quotation marks
+    4. The Text and the parts of the Rule are converted into plain text according to the Rep. Table:
+        U+0028  (
+        U+0029  )
+        U+0022	"
+        U+0027	'
+        U+0021  !
+    5. Text is tested for occurrences of Negative pattern pieces. At least one match causes FALSE search result and search finishing.
+    6. If  FALSE search result has not been obtained at step 5, text is tested for occurrences of Positive pattern pieces. At least one match causes TRUE search result and search finishing.
+    7. If  TRUE search result has not been obtained at step 6, the result is FALSE.
+-----------------------
